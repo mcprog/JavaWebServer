@@ -29,8 +29,8 @@ public class HttpHandler {
     private void handleInvalidRequest(final BufferedWriter writer) {
         // TODO add custom builder func for all this at once
         // new HttpResponse.Builder().buildBadRequest();
-        HttpResponse notFound = new HttpResponse.Builder().setStatusCode(400).setEntity("Bad request..").build();
-        ResponseWriter.writeResponse(writer, notFound);
+        HttpResponse badRequest = new HttpResponse.Builder().buildBadRequest();
+        ResponseWriter.writeResponse(writer, badRequest);
     }
 
     private void handleRequest(final HttpRequest request,final BufferedWriter writer) {
@@ -42,9 +42,7 @@ public class HttpHandler {
             ResponseWriter.writeResponse(writer, routes.get(routeKey).run(request));
         } else {
             // Key not found
-            // TODO add custom builder fun for this all at once
-            // new HttpResponse.Builder().builderRequest();
-            ResponseWriter.writeResponse(writer, new HttpResponse.Builder().setStatusCode(404).setEntity("Route not found..").build());
+            ResponseWriter.writeResponse(writer, new HttpResponse.Builder().buildRouteNoteFound());
         }
     }
 

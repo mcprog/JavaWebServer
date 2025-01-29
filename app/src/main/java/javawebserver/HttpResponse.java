@@ -77,6 +77,14 @@ public class HttpResponse {
         public HttpResponse build() {
             return new HttpResponse(responseHeaders, statusCode, entity);
         }
+
+        public HttpResponse buildBadRequest() {
+            return new HttpResponse.Builder().setStatusCode(400).setEntity("Bad request..").build();
+        }
+
+        public HttpResponse buildRouteNoteFound() {
+            return new HttpResponse.Builder().setStatusCode(404).setEntity("Route not found..").build();
+        }
     }
 
 }
